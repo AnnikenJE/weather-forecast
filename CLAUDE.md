@@ -1,7 +1,7 @@
 # Claude Rules for Weather Forecast
 
 ## Project context
-Flask app that fetches weather data from the Yr API. First self-initiated Python project.
+Flask app that fetches weather data from a weather API. First self-initiated Python project.
 
 ## Language
 Always respond in Norwegian unless the user writes in English.
