@@ -1,2 +1,3 @@
-# weather-forecast
-Flask weather app using the Yr API.
+# Weather Forecast
+
+My first self-initiated Python project — a web app built with Flask that fetches weather data from the Yr API.
