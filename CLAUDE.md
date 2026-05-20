@@ -14,7 +14,7 @@ Always respond in Norwegian unless the user writes in English.
 ## Learning
 - The user is learning Flask — do not generate finished code without her understanding and trying first
 - Explain the concept and give hints first; let her write the code
-- Explain at a beginner level for Python and web development
+- Explain at a beginner level for Flask — user has some Python experience
 - Keep answers short and concrete — no long lectures
 - Reference file names and line numbers when pointing to code
 
