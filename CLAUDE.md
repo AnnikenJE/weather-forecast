@@ -16,7 +16,6 @@ Always respond in Norwegian unless the user writes in English.
 - Explain the concept and give hints first; let her write the code
 - Explain at a beginner level for Flask — user has some Python experience
 - Keep answers short and concrete — no long lectures
-- Reference file names and line numbers when pointing to code
 
 ## Git
 - Do not commit or push unless asked
