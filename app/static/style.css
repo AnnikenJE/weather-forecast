@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Raleway:wght@300;400;500&display=swap');
 
 :root {
-    --bg:         #0c1220;
-    --surface:    #131e2f;
-    --surface-2:  #1a2840;
-    --border:     #243350;
-    --text:       #d8d0be;
-    --text-muted: #7a8fa8;
-    --gold:       #c9a355;
-    --gold-dark:  #a8843f;
-    --heading:    #f0e6c8;
+    --bg:         #1a0d2e;
+    --surface:    #241540;
+    --surface-2:  #2e1a52;
+    --border:     #3d2566;
+    --text:       #c8b8e8;
+    --text-muted: #8a70aa;
+    --gold:       #b894e8;
+    --gold-dark:  #9a72cc;
+    --heading:    #ede0ff;
 }
 
 * {
@@ -21,7 +21,7 @@
 body {
     background-color: var(--bg);
     color: var(--text);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Raleway', sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -34,7 +34,7 @@ header {
 }
 
 header h1 {
-    font-family: 'Lora', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 2rem;
     font-weight: 600;
     color: var(--gold);
@@ -77,7 +77,7 @@ article {
 }
 
 h2 {
-    font-family: 'Lora', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 1rem;
     font-weight: 600;
     color: var(--gold);
@@ -87,7 +87,7 @@ h2 {
 }
 
 h3 {
-    font-family: 'Lora', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 1.1rem;
     color: var(--heading);
 }
@@ -120,7 +120,7 @@ input[type="text"] {
     border: 1px solid var(--border);
     border-radius: 8px;
     background: var(--surface-2);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 0.9rem;
     color: var(--heading);
     margin-bottom: 0.75rem;
@@ -139,7 +139,7 @@ button {
     border: none;
     border-radius: 8px;
     padding: 0.65rem 1.3rem;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
