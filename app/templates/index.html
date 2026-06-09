@@ -3,11 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-    <title>Weather Forecast</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <title>Weather</title>
   </head>
 
   <body>
@@ -16,28 +14,56 @@
     </header>
 
     <main>
-      <form method="POST">
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city" required />
-        <button type="submit">Get Weather</button>
-      </form>
+      <!-- Weather section -->
+      <section class="cards">
 
-      <section>
-        {% if weather %}
-        <h3>Current Weather in {{ city }}:</h3>
-        <p>Weather: {{ weather_right_now }}</p>
-        <p>Temperature: {{ weather.current_weather.temperature }}°C</p>
-        <p>Wind Speed: {{ weather.current_weather.windspeed }} km/t</p>
+        <!-- Weather lookup -->
+        <article>
+          <form method="POST">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required />
+            <button type="submit">Get Weather</button>
+          </form>
 
-        {% else %}
-        <p>No weather data available.</p>
-        {% endif %}
+          {% if weather %}
+          <div class="weather-data">
+            <h3>{{ city }}</h3>
+            <p>{{ weather_right_now }}</p>
+            <p>{{ weather.current_weather.temperature }}°C</p>
+            <p>{{ weather.current_weather.windspeed }} km/t vind</p>
+          </div>
+          {% else %}
+          <p>No weather data available.</p>
+          {% endif %}
+        </article>
 
-        <p>{{ outfit_suggestion }}</p>
+        <!--  Outfit suggestion -->
+        <article>
+          <form method="POST">
+            <input type="hidden" name="outfit" value="true" />
+            <input type="hidden" name="city" value="{{ city }}" />
+            <button type="submit">Get Outfit Suggestion</button>
+          </form>
+
+          {% if outfit_suggestion %}
+          <div class="weather-data">
+            <h3>Outfit</h3>
+            <p>{{ outfit_suggestion }}</p>
+          </div>
+          {% endif %}
+        </article>
+
+      </section>
+
+      <!-- About section -->
+      <section class="about">
+        <h2>About</h2>
+        <p>This is a simple weather forecast application built with Flask.</p>
       </section>
     </main>
 
     <footer>
+      <img src="{{ url_for('static', filename='rat.svg') }}" alt="rat" />
       <p>we love rats</p>
     </footer>
   </body>

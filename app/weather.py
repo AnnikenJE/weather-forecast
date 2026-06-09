@@ -1,4 +1,6 @@
 import requests
+import os
+import anthropic
 
 WEATHER_CODES = {
     0: "Clear sky",
@@ -31,9 +33,8 @@ WEATHER_CODES = {
     99: "Thunderstorm with heavy hail",
 }
 
-def weather(city):
+def get_weather(city):
     try:
-
         # Get the latitude and longitude of the city
         city_response = requests.get(f"https://geocoding-api.open-meteo.com/v1/search?name={city}&count=1")
         city_data = city_response.json()
@@ -54,5 +55,16 @@ def weather(city):
         return None, "Unknown weather code"
 
 
-def weather_outfit():
-    return "This will show something.. Soon :)"
+def weather_outfit(weather, temperature):
+    # Use the Anthropic API to get an outfit suggestion based on the weather and temperature
+    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    response = client.messages.create(
+        model="claude-haiku-4-5",
+        system="You are a helpful assistant that suggests outfits based on the weather. This needs to be a concise suggestion, ideally in one sentence. Remember the token limit and keep the response short.",
+        max_tokens=100,
+        temperature=0.7,
+        messages=[
+            {"role": "user", "content": f"The weather right now is {weather} and the temperature is {temperature} degrees Celsius. What outfit would you suggest?"}
+        ]
+    )
+    return response.content[0].text
