@@ -1,6 +1,9 @@
 import requests
 import os
 import anthropic
+from datetime import datetime
+
+_outfit_cache = {}
 
 WEATHER_CODES = {
     0: "Clear sky",
@@ -35,13 +38,20 @@ WEATHER_CODES = {
 
 def get_weather(city):
     try:
+        # today = datetime.now().strftime("%Y-%m-%d")
+
         # Get the latitude and longitude of the city
         city_response = requests.get(f"https://geocoding-api.open-meteo.com/v1/search?name={city}&count=1")
         city_data = city_response.json()
 
         # Get the current weather for the city
-        weather_response = requests.get(f"https://api.open-meteo.com/v1/forecast?latitude={city_data['results'][0]['latitude']}&longitude={city_data['results'][0]['longitude']}&current_weather=true")
+        weather_response = requests.get(f"https://api.open-meteo.com/v1/forecast?latitude={city_data['results'][0]['latitude']}&longitude={city_data['results'][0]['longitude']}&current_weather=true&hourly=temperature_2m,weathercode")
         weather_data = weather_response.json()
+
+        # weather_list = []
+        # for i in range(len(weather_data["hourly"]["time"])):
+        #     if weather_data["hourly"]["time"][i].startswith(today):
+        #         weather_list.append(i)
 
         print(city_data)
         print("\nWEATHER DATA:\n",weather_data, "\n")
@@ -56,6 +66,11 @@ def get_weather(city):
 
 
 def weather_outfit(weather, temperature):
+
+    key=(weather, temperature)
+    if key in _outfit_cache:
+        return _outfit_cache[key]
+
     # Use the Anthropic API to get an outfit suggestion based on the weather and temperature
     client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
     response = client.messages.create(
@@ -67,4 +82,7 @@ def weather_outfit(weather, temperature):
             {"role": "user", "content": f"The weather right now is {weather} and the temperature is {temperature} degrees Celsius. What outfit would you suggest?"}
         ]
     )
+
+    _outfit_cache[key] = response.content[0].text
+    
     return response.content[0].text
