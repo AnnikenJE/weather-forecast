@@ -1,6 +1,6 @@
 # Weather Forecast
 
-My first self-initiated Python project — a web app built with Flask that fetches weather data from a weather API.
+My first self-initiated Python project, a web app built with Flask that fetches weather data from a weather API.
 
 It connects to the Claude API to give clothing recommendations based on weather data.
 
